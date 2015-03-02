@@ -13,7 +13,7 @@ import org.havi.ui.event.*;
 public class HelloTVXlet implements Xlet, HBackgroundImageListener, 
         ResourceClient, HActionListener
        {
-
+    
     private XletContext actueleXletContext;
     private HScene scene;
     private HTextButton btn1;
@@ -25,15 +25,20 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
     private HTextButton btn7;
     private HTextButton btn8;
     private HTextButton btn9;
+    private HTextButton btnTrue;
+    private HTextButton btnFalse;
     private HStaticText vraaglabel;
     private HStaticText redlabel;
     private HStaticText bluelabel;
+    //private HStaticIcon kruis = new HStaticIcon("kruis.png");
+    //private HStaticIcon Cirkel = new HStaticIcon("cirkel.png");
     
     private HBackgroundConfigTemplate bgTemplate; 
     private HScreen screen;
     private HBackgroundDevice bgDevice;
     private HStillImageBackgroundConfiguration bgConfiguration;
     private HBackgroundImage agrondimg = new HBackgroundImage("wzlogo.jpg");
+    
 
     public void notifyRelease (ResourceProxy proxy){}
     public void release (ResourceProxy proxy){}
@@ -94,6 +99,8 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
       btn7 = new HTextButton("Clara");
       btn8 = new HTextButton("Ian Thomas");
       btn9 = new HTextButton("Veronique");
+      btnTrue = new HTextButton("WAAR");
+      btnFalse = new HTextButton("NIET WAAR");
       
       vraaglabel = new HStaticText ("");
       redlabel = new HStaticText ("PLAYER 1" + "\n" + "€ 0");
@@ -118,7 +125,6 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
       btn1.setSize(140, 120);
       btn1.setBackground(new DVBColor(0,0,0,220));
       btn1.setBackgroundMode(HVisible.BACKGROUND_FILL);
-      
       
       btn2.setLocation(200, 30);
       btn2.setSize(140, 120);
@@ -162,6 +168,19 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
       btn9.setBackground(new DVBColor(0,0,0,220));
       btn9.setBackgroundMode(HVisible.BACKGROUND_FILL);
       
+      btnTrue.setLocation(530, 450);
+      btnTrue.setSize(120, 50);
+      btnTrue.setBackground(new DVBColor(0,0,0,220));
+      btnTrue.setBackgroundMode(HVisible.BACKGROUND_FILL);
+      btnTrue.setVisible(false);
+      
+      btnFalse.setLocation(530, 510);
+      btnFalse.setSize(120, 50);
+      btnFalse.setBackground(new DVBColor(0,0,0,220));
+      btnFalse.setBackgroundMode(HVisible.BACKGROUND_FILL);
+      btnFalse.setVisible(false);
+      
+
       scene.add(btn1);
       scene.add(btn2);
       scene.add(btn3);
@@ -171,9 +190,23 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
       scene.add(btn7);
       scene.add(btn8);
       scene.add(btn9);
+      scene.add(btnTrue);
+      scene.add(btnFalse);
       scene.add(vraaglabel);
       scene.add(redlabel);
       scene.add(bluelabel);
+      
+      btn1.setActionCommand("knop1");
+      btn2.setActionCommand("knop2");
+      btn3.setActionCommand("knop3");
+      btn4.setActionCommand("knop4");
+      btn5.setActionCommand("knop5");
+      btn6.setActionCommand("knop6");
+      btn7.setActionCommand("knop7");
+      btn8.setActionCommand("knop8");
+      btn9.setActionCommand("knop9");
+      btnTrue.setActionCommand("True");
+      btnFalse.setActionCommand("False");
       
       btn1.setFocusTraversal(null, btn4, null, btn2);
       btn2.setFocusTraversal(null, btn5, btn1, btn3);
@@ -196,8 +229,10 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
       btn7.addHActionListener(this);
       btn8.addHActionListener(this);
       btn9.addHActionListener(this);
+      btnTrue.addHActionListener(this);
+      btnFalse.addHActionListener(this);
       
-        
+ 
     }
     
      public void startXlet() {
@@ -222,14 +257,114 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
         } catch (Exception s) {
             System.out.println(s.toString());
         } 
+        
     }
 
     public void imageLoadFailed(HBackgroundImageEvent e) {
         
     }
 
-    public void actionPerformed(ActionEvent arg0) {
+   
+    public void actionPerformed(ActionEvent e) {
+         if(e.getActionCommand() == "knop1"){
+            btn1.setBackground(new DVBColor(100,100,0,220));
+            btnTrue.setVisible(true);
+            btnFalse.setVisible(true);
+            btnTrue.requestFocus();
+            btnTrue.setFocusTraversal(null, btnFalse, null, null);
+            btnFalse.setFocusTraversal(btnTrue, null, null, null);
+        }
         
+        if(e.getActionCommand() == "knop2"){
+            btn2.setBackground(new DVBColor(100,100,0,220));
+            btnTrue.setVisible(true);
+            btnFalse.setVisible(true);
+            btnTrue.requestFocus();
+            btnTrue.setFocusTraversal(null, btnFalse, null, null);
+            btnFalse.setFocusTraversal(btnTrue, null, null, null);
+        }
+        
+        if(e.getActionCommand() == "knop3"){
+            btn3.setBackground(new DVBColor(100,100,0,220));
+            btnTrue.setVisible(true);
+            btnFalse.setVisible(true);
+            btnTrue.requestFocus();
+            btnTrue.setFocusTraversal(null, btnFalse, null, null);
+            btnFalse.setFocusTraversal(btnTrue, null, null, null);
+        }
+        
+        if(e.getActionCommand() == "knop4"){
+            btn4.setBackground(new DVBColor(100,100,0,220));
+            btnTrue.setVisible(true);
+            btnFalse.setVisible(true);
+            btnTrue.requestFocus();
+            btnTrue.setFocusTraversal(null, btnFalse, null, null);
+            btnFalse.setFocusTraversal(btnTrue, null, null, null);
+            
+        }
+         
+         if(e.getActionCommand() == "knop5"){
+            btn5.setBackground(new DVBColor(100,100,0,220));
+            btnTrue.setVisible(true);
+            btnFalse.setVisible(true);
+            btnTrue.requestFocus();
+            btnTrue.setFocusTraversal(null, btnFalse, null, null);
+            btnFalse.setFocusTraversal(btnTrue, null, null, null);
+        }
+        
+        if(e.getActionCommand() == "knop6"){
+            btn6.setBackground(new DVBColor(100,100,0,220));
+            btnTrue.setVisible(true);
+            btnFalse.setVisible(true);
+            btnTrue.requestFocus();
+            btnTrue.setFocusTraversal(null, btnFalse, null, null);
+            btnFalse.setFocusTraversal(btnTrue, null, null, null);
+        }
+        
+        if(e.getActionCommand() == "knop7"){
+            btn7.setBackground(new DVBColor(100,100,0,220));
+            btnTrue.setVisible(true);
+            btnFalse.setVisible(true);
+            btnTrue.requestFocus();
+            btnTrue.setFocusTraversal(null, btnFalse, null, null);
+            btnFalse.setFocusTraversal(btnTrue, null, null, null);
+        }
+        
+        if(e.getActionCommand() == "knop8"){
+            btn8.setBackground(new DVBColor(100,100,0,220));
+            btnTrue.setVisible(true);
+            btnFalse.setVisible(true);
+            btnTrue.requestFocus();
+            btnTrue.setFocusTraversal(null, btnFalse, null, null);
+            btnFalse.setFocusTraversal(btnTrue, null, null, null);
+        }
+         
+         if(e.getActionCommand() == "knop9"){
+            btn9.setBackground(new DVBColor(100,100,0,220));
+            btnTrue.setVisible(true);
+            btnFalse.setVisible(true);
+            btnTrue.requestFocus();
+            btnTrue.setFocusTraversal(null, btnFalse, null, null);
+            btnFalse.setFocusTraversal(btnTrue, null, null, null);
+        }
+         
+         if(e.getActionCommand() == "True"){
+        
+            vraaglabel.setTextContent("JE ANTWOORD IS JUIST", HState.NORMAL_STATE);
+            btnTrue.setVisible(false);
+            btnFalse.setVisible(false);
+            btn5.requestFocus();
+            
+         }
+             
+         if(e.getActionCommand() == "False"){
+              
+             vraaglabel.setTextContent("JE ANTWOORD IS FOUT", HState.NORMAL_STATE);
+             btnTrue.setVisible(false);
+             btnFalse.setVisible(false);
+             btn5.requestFocus();
+         
+         }
     }
 
     
