@@ -12,13 +12,16 @@ package hellotvxlet;
 public class Question {
 
     public String question;
-    public boolean answer;
+    public String answer;
     public boolean used;
-    
 
-    public Question(String Vraag, boolean Antwoord, boolean used) {
+   public Question(String Vraag, String Antwoord, boolean used) {
         this.question = Vraag;
         this.answer = Antwoord;
         this.used = used;
     }
+
+   
+
+    
 }
