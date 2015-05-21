@@ -1,6 +1,7 @@
 package hellotvxlet;
 
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.util.Random;
 import javax.tv.xlet.*;
@@ -14,7 +15,7 @@ import org.havi.ui.event.*;
 public class HelloTVXlet implements Xlet, HBackgroundImageListener, 
         ResourceClient, HActionListener
        {
-     Question[] questionArray = new Question[2];
+     Question[] questionArray = new Question[70];
     
     private XletContext actueleXletContext;
     private HScene scene;
@@ -35,15 +36,27 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
     private HStaticText bluelabel;
     int scoreblauw = 0;
     int scorerood = 0;
-    String ButtonCol1;
-    String ButtonCol2;
-    String ButtonCol3;
-    String ButtonCol4;
-    String ButtonCol5;
-    String ButtonCol6;
-    String ButtonCol7;
-    String ButtonCol8;
-    String ButtonCol9;
+    int drawScoreRood = 0;
+    int drawScoreBlauw = 0;
+    boolean Btn1Enable = true;
+    boolean Btn2Enable = true;
+    boolean Btn3Enable = true;
+    boolean Btn4Enable = true;
+    boolean Btn5Enable = true;
+    boolean Btn6Enable = true;
+    boolean Btn7Enable = true;
+    boolean Btn8Enable = true;
+    boolean Btn9Enable = true;
+    boolean NoButtonLeft = false;
+    String ButtonCol1 = "Zwart";
+    String ButtonCol2 = "Zwart";
+    String ButtonCol3 = "Zwart";
+    String ButtonCol4 = "Zwart";
+    String ButtonCol5 = "Zwart";
+    String ButtonCol6 = "Zwart";
+    String ButtonCol7 = "Zwart";
+    String ButtonCol8 = "Zwart";
+    String ButtonCol9 = "Zwart";
     boolean CanWin = false;
     boolean EnemyCanWin = false;
     int randomInt; 
@@ -120,10 +133,10 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
       btn9 = new HTextButton("Veronique");
       btnTrue = new HTextButton("WAAR");
       btnFalse = new HTextButton("NIET WAAR");
-      revange = new HTextButton("REVANGE");
+      revange = new HTextButton("REVANCHE");
       
       vraaglabel = new HStaticText ("");
-      redlabel = new HStaticText ("=> PLAYER 1" + "\n" + "€ " + scorerood );
+      redlabel = new HStaticText (">> PLAYER 1" + "\n" + "€ " + scorerood );
       bluelabel = new HStaticText ("PLAYER 2" +  "\n" + "€ " + scoreblauw);
       
      //Propterties Buttons and Labels 
@@ -131,6 +144,8 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
       vraaglabel.setSize(460, 85);
       vraaglabel.setBackground(new DVBColor(50,50,50,200));
       vraaglabel.setBackgroundMode(HVisible.BACKGROUND_FILL);
+      vraaglabel.setFont(new Font("Tiresias",Font.PLAIN,17));
+      
       
       redlabel.setLocation(530, 30);
       redlabel.setSize(150, 195);
@@ -241,7 +256,7 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
       btn9.setActionCommand("knop9");
       btnTrue.setActionCommand("True");
       btnFalse.setActionCommand("False");
-      revange.setActionCommand("Revange");
+      revange.setActionCommand("Revanche");
       
       btn1.setFocusTraversal(null, btn4, null, btn2);
       btn2.setFocusTraversal(null, btn5, btn1, btn3);
@@ -269,10 +284,8 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
       btnFalse.addHActionListener(this);
       revange.addHActionListener(this);
       
-      questionArray[0] = new Question("De voornaam van mr. Soontjes is Koen",
-            "True", false);
-      questionArray[1] = new Question("De voornaam van mr. Soontjes is Jan",
-            "False", false);
+      arraylijst();
+      
  
     }
     
@@ -308,7 +321,8 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
    
     public void actionPerformed(ActionEvent e) {
          if(e.getActionCommand() == "knop1"){
-             
+             if(Btn1Enable)
+             {
             vraaglabel.setTextContent(vraagAanroeper(), 
                    HState.NORMAL_STATE);
             
@@ -320,10 +334,14 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
             btnTrue.requestFocus();
             btnTrue.setFocusTraversal(null, btnFalse, null, null);
             btnFalse.setFocusTraversal(btnTrue, null, null, null);
+            Btn1Enable = false;
+            }
+             
         }
         
         if(e.getActionCommand() == "knop2"){
-            
+            if(Btn2Enable)
+             {
             vraaglabel.setTextContent(vraagAanroeper(), 
                    HState.NORMAL_STATE);
             
@@ -335,10 +353,13 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
             btnTrue.requestFocus();
             btnTrue.setFocusTraversal(null, btnFalse, null, null);
             btnFalse.setFocusTraversal(btnTrue, null, null, null);
+            Btn2Enable = false;
+            }
         }
         
         if(e.getActionCommand() == "knop3"){
-            
+            if(Btn3Enable)
+             {
             vraaglabel.setTextContent(vraagAanroeper(), 
                    HState.NORMAL_STATE);
             
@@ -350,10 +371,13 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
             btnTrue.requestFocus();
             btnTrue.setFocusTraversal(null, btnFalse, null, null);
             btnFalse.setFocusTraversal(btnTrue, null, null, null);
+            Btn3Enable = false;
+            }
         }
         
         if(e.getActionCommand() == "knop4"){
-            
+            if(Btn4Enable)
+             {
             vraaglabel.setTextContent(vraagAanroeper(), 
                    HState.NORMAL_STATE);
             
@@ -365,11 +389,14 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
             btnTrue.requestFocus();
             btnTrue.setFocusTraversal(null, btnFalse, null, null);
             btnFalse.setFocusTraversal(btnTrue, null, null, null);
+            Btn4Enable = false;
+            }
             
         }
          
          if(e.getActionCommand() == "knop5"){
-             
+             if(Btn5Enable)
+             {
              vraaglabel.setTextContent(vraagAanroeper(), 
                    HState.NORMAL_STATE);
              
@@ -381,10 +408,13 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
             btnTrue.requestFocus();
             btnTrue.setFocusTraversal(null, btnFalse, null, null);
             btnFalse.setFocusTraversal(btnTrue, null, null, null);
+            Btn5Enable = false;
+            }
         }
         
         if(e.getActionCommand() == "knop6"){
-            
+            if(Btn6Enable)
+             {
             vraaglabel.setTextContent(vraagAanroeper(), 
                    HState.NORMAL_STATE);
             
@@ -396,10 +426,13 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
             btnTrue.requestFocus();
             btnTrue.setFocusTraversal(null, btnFalse, null, null);
             btnFalse.setFocusTraversal(btnTrue, null, null, null);
+            Btn6Enable = false;
+            }
         }
         
         if(e.getActionCommand() == "knop7"){
-            
+            if(Btn7Enable)
+             {
             vraaglabel.setTextContent(vraagAanroeper(), 
                    HState.NORMAL_STATE);
             
@@ -411,10 +444,13 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
             btnTrue.requestFocus();
             btnTrue.setFocusTraversal(null, btnFalse, null, null);
             btnFalse.setFocusTraversal(btnTrue, null, null, null);
+            Btn7Enable = false;
+            }
         }
         
         if(e.getActionCommand() == "knop8"){
-            
+            if(Btn8Enable)
+             {
             vraaglabel.setTextContent(vraagAanroeper(), 
                    HState.NORMAL_STATE);
             
@@ -426,10 +462,13 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
             btnTrue.requestFocus();
             btnTrue.setFocusTraversal(null, btnFalse, null, null);
             btnFalse.setFocusTraversal(btnTrue, null, null, null);
+            Btn8Enable = false;
+            }
         }
          
          if(e.getActionCommand() == "knop9"){
-             
+             if(Btn9Enable)
+             {
              vraaglabel.setTextContent(vraagAanroeper(), 
                    HState.NORMAL_STATE);
              
@@ -441,11 +480,13 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
             btnTrue.requestFocus();
             btnTrue.setFocusTraversal(null, btnFalse, null, null);
             btnFalse.setFocusTraversal(btnTrue, null, null, null);
+            Btn9Enable = false;
+             }
         }
          
-         if(e.getActionCommand() == "Revange")
+         if(e.getActionCommand() == "Revanche")
          {
-         
+            revange();
          }
          
          if(e.getActionCommand() == "True"){
@@ -470,6 +511,7 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
                 btnTrue.setVisible(false);
                 btnFalse.setVisible(false);
                 btn5.requestFocus();
+                checkForDraw();
                 spelerSwitch();
                  } 
                  else
@@ -478,7 +520,7 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
                     {
                     buttonKleur("Rood");
                     scorerood += 100;
-                    redlabel.setTextContent("=> PLAYER 1" + "\n" + "€ " + scorerood , HState.NORMAL_STATE);
+                    redlabel.setTextContent(">> PLAYER 1" + "\n" + "€ " + scorerood , HState.NORMAL_STATE);
                     vraaglabel.setTextContent("SPELER 1 IS GEWONNEN", HState.NORMAL_STATE);
                     btnTrue.setVisible(false);
                     btnFalse.setVisible(false);
@@ -489,7 +531,7 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
                     {
                     buttonKleur("Blauw");
                     scoreblauw += 100;
-                    bluelabel.setTextContent("=> PLAYER 2" + "\n" + "€ " + scoreblauw , HState.NORMAL_STATE);
+                    bluelabel.setTextContent(">> PLAYER 2" + "\n" + "€ " + scoreblauw , HState.NORMAL_STATE);
                     vraaglabel.setTextContent("SPELER 2 IS GEWONNEN", HState.NORMAL_STATE);
                     btnTrue.setVisible(false);
                     btnFalse.setVisible(false);
@@ -520,6 +562,7 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
                 btnTrue.setVisible(false);
                 btnFalse.setVisible(false);
                 btn5.requestFocus();
+                checkForDraw();
                 spelerSwitch();
                  }
                  else
@@ -577,6 +620,7 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
                 btnTrue.setVisible(false);
                 btnFalse.setVisible(false);
                 btn5.requestFocus();
+                checkForDraw();
                 spelerSwitch();
                  }
                  else
@@ -585,7 +629,7 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
                     {
                     buttonKleur("Rood");
                     scorerood += 100;
-                    redlabel.setTextContent("=> PLAYER 1" + "\n" + "€ " + scorerood , HState.NORMAL_STATE);
+                    redlabel.setTextContent(">> PLAYER 1" + "\n" + "€ " + scorerood , HState.NORMAL_STATE);
                     vraaglabel.setTextContent("SPELER 1 IS GEWONNEN", HState.NORMAL_STATE);
                     btnTrue.setVisible(false);
                     btnFalse.setVisible(false);
@@ -596,7 +640,7 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
                     {
                      buttonKleur("Blauw");
                      scoreblauw += 100;
-                     bluelabel.setTextContent("=> PLAYER 2" + "\n" + "€ " + scoreblauw , HState.NORMAL_STATE);
+                     bluelabel.setTextContent(">> PLAYER 2" + "\n" + "€ " + scoreblauw , HState.NORMAL_STATE);
                      vraaglabel.setTextContent("SPELER 2 IS GEWONNEN", HState.NORMAL_STATE);
                      btnTrue.setVisible(false);
                     btnFalse.setVisible(false);
@@ -627,6 +671,7 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
                 btnTrue.setVisible(false);
                 btnFalse.setVisible(false);
                 btn5.requestFocus();
+                checkForDraw();
                 spelerSwitch();
                  }
                  else
@@ -778,6 +823,7 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
                         ButtonCol1 = "Rood";
                         btn1.requestFocus();
                         
+                        
                 break;
                 case 2: btn2.setBackground(new DVBColor(255,0,0,230));
                         ButtonCol2 = "Rood";
@@ -866,7 +912,7 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
         
         if(Speler == true)
         {
-          redlabel.setTextContent("=> PLAYER 1" + "\n" + "€ " + scorerood, HState.NORMAL_STATE);
+          redlabel.setTextContent(">> PLAYER 1" + "\n" + "€ " + scorerood, HState.NORMAL_STATE);
           bluelabel.setTextContent("PLAYER 2" +  "\n" + "€ " + scoreblauw, HState.NORMAL_STATE);
 
           redlabel.setForeground(new DVBColor(255,255,255,255));
@@ -875,7 +921,7 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
         else
         {
           redlabel.setTextContent("PLAYER 1" + "\n" + "€ " + scorerood, HState.NORMAL_STATE);
-          bluelabel.setTextContent("=> PLAYER 2" +  "\n" + "€ " + scoreblauw, HState.NORMAL_STATE);
+          bluelabel.setTextContent(">> PLAYER 2" +  "\n" + "€ " + scoreblauw, HState.NORMAL_STATE);
           bluelabel.setForeground(new DVBColor(255,255,255,255));
           redlabel.setForeground(new DVBColor(0,0,0,255));
         }
@@ -887,7 +933,7 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
 
         Random randomCreator = new Random();
         String vraagReturn = "";
-        randomInt = randomCreator.nextInt(2);
+        randomInt = randomCreator.nextInt(70);
         
         for (int i = 0; i < questionArray.length; i++) 
         {
@@ -900,7 +946,7 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
                 } 
                 else 
                 {
-                    randomInt = randomCreator.nextInt(2);
+                    randomInt = randomCreator.nextInt(70);
                 }  
             }
         }
@@ -911,8 +957,240 @@ public class HelloTVXlet implements Xlet, HBackgroundImageListener,
         return vraagReturn;
     }
 
+    public void arraylijst()
+    {
+        // Aardrijkskunde 
+
+questionArray[0] = new Question("Istanbul is de hoofdstad van Turkije", "False", false);
+questionArray[1] = new Question("De Nijl is de langste rivier ter wereld", "True", false);
+questionArray[2] = new Question("De diameter van de zon is ongeveer \n 110 maal groter dan die van de aarde", "True", false);
+questionArray[3] = new Question("De kleinste planeet is ook de planeet \n die het dichtste bij de zon staat", "True", false);
+questionArray[4] = new Question("Hoe hoger in de atmosfeer - hoe hoger de druk", "False", false);
+questionArray[5] = new Question("Het Olympische vuur brandde voor het eerst in Amsterdam", "True", false);
+questionArray[6] = new Question("Stalingrad is de vroegere naam van Sint-Petersburg", "False", false);
+questionArray[7] = new Question("Het Atlasgebergte ligt in Zuid-Amerika", "False", false);
+questionArray[8] = new Question("Ijsberen leven op de Zuidpool", "False", false);
+questionArray[9] = new Question("De luchtvochtigheid meet men met een barometer", "False", false);
+
+// Geschiedenis
+
+questionArray[10] = new Question("De Titanic werd in Belfast gebouwd", "True", false);
+questionArray[11] = new Question("Socrates was een leerling van Plato", "False", false);
+questionArray[12] = new Question("Stalin was de leider van de Bolsjewistische \n revolutie in Rusland in 1917", "False", false);
+questionArray[13] = new Question("De NAVO werd opgericht in 1949", "True", false);
+questionArray[14] = new Question("Karl Marx is de schrijver van 'Das Kapital'", "True", false);
+questionArray[15] = new Question("Leopold I was de eerste koning van België", "True", false);
+questionArray[16] = new Question("Franklin Roosevelt is de enige Amerikaanse \n president die 4 keer verkozen is", "True", false);
+questionArray[17] = new Question("Zwitserland werd niet bezet tijdens Wereldoorlog II", "True", false);
+questionArray[18] = new Question("Hitler was getrouwd met Anna Braun", "False", false);
+questionArray[19] = new Question("Neil Armstrong was de eerste man op de maan", "True", false);
+
+// Sport
+
+questionArray[20] = new Question("Cassius Clay was de geboortenaam \n van Mohammed Ali", "True", false);
+questionArray[21] = new Question("Voetbal is afkomstig uit Brazilië", "False", false);
+questionArray[22] = new Question("Ping Pong is afkomstig uit China", "True", false);
+questionArray[23] = new Question("Een Olympisch zwembad is 50 meter lang", "True", false);
+questionArray[24] = new Question("Het WK voetbal werd in 2010 gehouden in Zuid-Afrika", "True", false);
+questionArray[25] = new Question("Eddy Merckx won 4 maal de Ronde van Vlaanderen", "False", false);
+questionArray[26] = new Question("Een volledige hockeywedstrijd duurt 70 minuten", "True", false);
+questionArray[27] = new Question("Zizou is de bijnaam van Zinédine Zidane", "True", false);
+questionArray[28] = new Question("De Champions League werd in 2014 \n gewonnen door Atlético Madrid", "False", false);
+questionArray[29] = new Question("Het eerste WK in het voetbal werd \n gewonnen door Uruguay", "True", false);
+
+// Muziek/film
+
+questionArray[30] = new Question("Mozart had de Oostenrijkse nationaliteit", "True", false);
+questionArray[31] = new Question("Elvis Presley stierf in 1977", "True", false);
+questionArray[32] = new Question("Een viool heeft 6 snaren", "False", false);
+questionArray[33] = new Question("John Lennon werd vermoord in Los Angeles", "False", false);
+questionArray[34] = new Question("Een standaardpiano telt 52 witte toetsen", "True", false);
+questionArray[35] = new Question("De eerste woorden van Bart Simpson in \n de serie 'The Simpsons' waren 'Ay carumba'", "True", false);
+questionArray[36] = new Question("Al Pacino speelde de hoofdrol in Scarface", "True", false);
+questionArray[37] = new Question("Angelina Jolie speelde de hoofdrol in de film 'Pretty Woman'", "False", false);
+questionArray[38] = new Question("De achternaam van Rocky in de boksfilm 'Rocky' was 'Balboa'", "True", false);
+questionArray[39] = new Question("Jennifer Aniston speelt de rol van 'Samantha' \n in de serie 'Sex and the City'", "False", false);
+
+// Natuurkunde
+
+questionArray[40] = new Question("Diamant is de hardste natuurlijke stof", "True", false);
+questionArray[41] = new Question("Bar is de natuurkundige eenheid van druk", "True", false);
+questionArray[42] = new Question("Een atoom is groter dan een molecuul", "False", false);
+questionArray[43] = new Question("Thomas Edison was de uitvinder van de elektriciteit", "True", false);
+questionArray[44] = new Question("Een stukje driehoekig glas waarmee je wit \n licht kan scheiden noemen we een Prisma", "True", false);
+questionArray[45] = new Question("Een schaduw wordt groter als het voorwerp \n verder van de lichtbron wordt gezet", "False", false);
+questionArray[46] = new Question("Rood, blauw en geel zijn de primaire kleuren", "False", false);
+questionArray[47] = new Question("Van Diamant maakt men Koolstof", "True", false);
+questionArray[48] = new Question("E=mg² is de beroemde formule van Einstein", "False", false);
+questionArray[49] = new Question("Goud heeft als chemisch symbool Ag", "False", false);
+
+// Algemene kennis
+
+questionArray[50] = new Question("Phasmaphobia is vrees voor spoken", "True", false);
+questionArray[51] = new Question("Het Himalayagebergte heeft als vertaling \n 'De woonplaats van sneeuw'", "True", false);
+questionArray[52] = new Question("'D.C.' in Washington D.C. staat voor \n 'District of Colombia'", "True", false);
+questionArray[53] = new Question("1 inch is 2,54 cm", "True", false);
+questionArray[54] = new Question("In Romaanse cijfers staat de 'D' voor 1000", "False", false);
+questionArray[55] = new Question("Een triljoen heeft 18 nullen", "True", false);
+questionArray[56] = new Question("Rood, wit en blauw zijn de kleuren \n van de Poolse vlag", "False", false);
+questionArray[57] = new Question("Posseidon was de oppergod in de Griekse mythologie", "False", false);
+questionArray[58] = new Question("De EU vlag telt 14 sterren", "False", false);
+questionArray[59] = new Question("Via de Schaal van Richter meet men \n de hevigheid van een orkaan", "False", false);
+
+// Kunst en literatuur
+
+questionArray[60] = new Question("De Mona Lisa staat in het Louvre", "True", false);
+questionArray[61] = new Question("Viktor was de eerste naam van Frankenstein", "True", false);
+questionArray[62] = new Question("Een limeriek telt 7 regels", "False", false);
+questionArray[63] = new Question("Don Diega de la Vega is beter gekend als Zorro", "True", false);
+questionArray[64] = new Question("Pablo Picasso had de Italiaanse nationaliteit", "False", false);
+questionArray[65] = new Question("William Shakespeare stierf in de 18de eeuw", "False", false);
+questionArray[66] = new Question("Da Vinci schilderde het schilderij 'The Last Supper'", "True", false);
+questionArray[67] = new Question("Jimmy Jolka is de naam van de baas van de chocoladefabriek \n in het boek 'Sjakie en de chocoladefabriek'", "False", false);
+questionArray[68] = new Question("Rudyard Kipling is de schrijver van Jungle Book", "True", false);
+questionArray[69] = new Question("Kapitein Haak stierf door een inktvis", "False", false);
     
+    }
        
+    public void revange()
+    {
+        revange.setVisible(false);
+        
+        btn1.setBackground(new DVBColor(0,0,0,220));
+        btn2.setBackground(new DVBColor(0,0,0,220));
+        btn3.setBackground(new DVBColor(0,0,0,220));
+        btn4.setBackground(new DVBColor(0,0,0,220));
+        btn5.setBackground(new DVBColor(0,0,0,220));
+        btn6.setBackground(new DVBColor(0,0,0,220));
+        btn7.setBackground(new DVBColor(0,0,0,220));
+        btn8.setBackground(new DVBColor(0,0,0,220));
+        btn9.setBackground(new DVBColor(0,0,0,220));
+        
+        btn5.requestFocus();
+        
+        spelerSwitch();
+        
+        Btn1Enable = true;
+        Btn2Enable = true;
+        Btn3Enable = true;
+        Btn4Enable = true;
+        Btn5Enable = true;
+        Btn6Enable = true;
+        Btn7Enable = true;
+        Btn8Enable = true;
+        Btn9Enable = true;
+        NoButtonLeft = false;
+        vraaglabel.setTextContent("", HState.NORMAL_STATE);
+        
+        ButtonCol1 = "Zwart";
+        ButtonCol2 = "Zwart";
+        ButtonCol3 = "Zwart";
+        ButtonCol4 = "Zwart";
+        ButtonCol5 = "Zwart";
+        ButtonCol6 = "Zwart";
+        ButtonCol7 = "Zwart";
+        ButtonCol8 = "Zwart";
+        ButtonCol9 = "Zwart";
+        CanWin = false;
+        EnemyCanWin = false;
+        drawScoreRood = 0;
+        drawScoreBlauw = 0;
+        
+        for(int i=0;i < 70;i++)
+        {
+            questionArray[i].used = false;
+        }
+        
+    }
+    
+    public void checkForDraw()
+    {
+        if(ButtonCol1 != "Zwart" && ButtonCol2 != "Zwart" && ButtonCol3 != "Zwart" && ButtonCol4 != "Zwart" && ButtonCol5 != "Zwart" && ButtonCol6 != "Zwart" && ButtonCol7 != "Zwart" && ButtonCol8 != "Zwart" && ButtonCol9 != "Zwart" )
+        {
+            //meeste knoppen
+            if(ButtonCol1 == "Blauw")
+            { drawScoreBlauw ++;
+            }
+            else
+            {drawScoreRood ++;
+            }
+            if(ButtonCol2 == "Blauw")
+            {drawScoreBlauw ++;
+            }
+            else
+            {drawScoreRood ++;
+            }
+            if(ButtonCol3 == "Blauw")
+            {drawScoreBlauw ++;
+            }
+            else
+            {drawScoreRood ++;
+            }
+            if(ButtonCol4 == "Blauw")
+            {drawScoreBlauw ++;
+            }
+            else
+            {drawScoreRood ++;
+            }
+            if(ButtonCol5 == "Blauw")
+            {
+            drawScoreBlauw ++;}
+            else
+            {drawScoreRood ++;
+            }
+            if(ButtonCol6 == "Blauw")
+            {drawScoreBlauw ++;
+            }
+            else
+            {drawScoreRood ++;
+            }
+            if(ButtonCol7 == "Blauw")
+            {drawScoreBlauw ++;
+            }
+            else
+            {drawScoreRood ++;
+            }
+            if(ButtonCol8 == "Blauw")
+            {drawScoreBlauw ++;
+            }
+            else
+            {drawScoreRood ++;
+            }
+            if(ButtonCol9 == "Blauw")
+            {drawScoreBlauw ++;
+            }
+            else
+            {drawScoreRood ++;
+            }
+            
+            
+            if(drawScoreBlauw > drawScoreRood)
+            {
+                    scoreblauw += 50;
+                    bluelabel.setTextContent("PLAYER 2" + "\n" + "€ " + scoreblauw , HState.NORMAL_STATE);
+                    vraaglabel.setTextContent("SPELER 2 IS GEWONNEN", HState.NORMAL_STATE);
+                    btnTrue.setVisible(false);
+                    btnFalse.setVisible(false);
+                    revange.setVisible(true);
+                    revange.requestFocus();
+            }
+            else
+            {
+                    scorerood += 50;
+                    redlabel.setTextContent("PLAYER 1" + "\n" + "€ " + scorerood , HState.NORMAL_STATE);
+                    vraaglabel.setTextContent("SPELER 1 IS GEWONNEN", HState.NORMAL_STATE);
+                    btnTrue.setVisible(false);
+                    btnFalse.setVisible(false);
+                    revange.setVisible(true);
+                    revange.requestFocus();
+            
+            
+            }
+            
+           
+        }
+    }
+    
     
 }
 
